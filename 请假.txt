@@ -1,0 +1,144 @@
+http://sea.itwocx.com/GZRND－－－－
+name : edwin.lu@rib-software.com    password : rD9445
+
+http://116.6.216.43:85/redmine
+name : edwin  password :123
+
+I will take leave tomorrow, xxx is my backup, any emergency please contatct me: phone number.
+
+to———
+Mary Gan <mary.gan@ribitwo.com>, Neal Li <neal.li@ribitwo.com>, Leo Lin <leo.lin@ribitwo.com>, Eating Lao <eating.lao@ribitwo.com>, Jim Yang <jim.yang@ribitwo.com>, Ellen Wang <ellen.wang@ribitwo.com>, Eddy Shan <eddy.shan@ribitwo.com>,Sharon Yang <sharon.yang@ribitwo.com>
+Daizy Zhang <daizy.zhang@ribitwo.com>
+
+
+
+				SVN Command Line
+SVN-Path—－－－－－－－http://116.6.216.43:82/svn/trunk/Mobility/Documents/09 Configuration and Delivery/ControlTower
+
+素材来源－－－－－－－－－http://blog.csdn.net/yangzhongxuan/article/details/7018168
+
+﻿1、将文件checkout到本地目录 
+  svn checkout path（path是服务器上的目录） 
+  svn checkout path（path是服务器上的目录） 
+  简写：svn co 
+
+2、往版本库中添加新的文－－－－－注意要新加一个文件到svn上，先add后 commit
+  svn add file 
+  例如：svn add test.php(添加test.php) 
+  svn add *.PHP(添加当前目录下所有的php文件) 
+
+3、将改动的文件提交到版本库 
+  svn commit -m "LogMessage" [-N] [--no-unlock] PATH(如果选择了保持锁，就使用--no-unlock开关) 
+  例如：svn commit -m "add test file for my test" test.php 
+  简写：svn ci 
+4、加锁/解锁 
+ 
+  svn lock -m "LockMessage" [--force] PATH 
+  例如：svn lock -m "lock test file" test.php 
+  svn unlock PATH 
+
+5、更新到某个版本 
+ 
+  svn update -r m path 
+   例如： 
+   svn update如果后面没有目录，默认将当前目录以及子目录下的所有文件都更新到最新版本。 
+   svn update -r 200 test.php(将版本库中的文件test.php还原到版本200) 
+   svn update test.php(更新，于版本库同步。如果在提交的时候提示过期的话，是因为冲突，需要先update，修改文件，然后清除svn resolved，最后再提交commit)
+   简写：svn up 
+
+6、查看文件或者目录状态 
+ 
+  1）svn status path（目录下的文件和子目录的状态，正常状态不显示） 
+   【?：不在svn的控制中；M：内容被修改；C：发生冲突；A：预定加入到版本库；K：被锁定】 
+  2）svn status -v path(显示文件和子目录状态) 
+   第一列保持相同，第二列显示工作版本号，第三和第四列显示最后一次修改的版本号和修改人。 
+   注：svn status、svn diff和 svn revert这三条命令在没有网络的情况下也可以执行的，原因是svn在本地的.svn中保留了本地版本的原始拷贝。
+   简写：svn st 
+ 
+7、删除文件 
+ 
+  svn delete path -m "delete test fle" 
+  例如：svn delete svn://192.168.1.1/pro/domain/test.php -m "delete test file" 
+  或者直接svn delete test.php 然后再svn ci -m 'delete test file‘，推荐使用这种 
+  简写：svn (del, remove, rm) 
+ 
+8、查看日志 
+ 
+  svn log path 
+  例如：svn log test.php 显示这个文件的所有修改记录，及其版本号的变化 
+
+9、查看文件详细信息 
+ 
+  svn info path 
+  例如：svn info test.php 
+10、比较差异 
+ 
+  svn diff path(将修改的文件与基础版本比较) 
+  例如：svn diff test.php 
+       svn diff -r m:n path(对版本m和版本n比较差异) 
+  例如：svn diff -r 200:201 test.php 
+  简写：svn di 
+
+11、将两个版本之间的差异合并到当前文件 
+ 
+  svn merge -r m:n path 
+  例如：svn merge -r 200:205 test.php（将版本200与205之间的差异合并到当前文件，但是一般都会产生冲突，需要处理一下） 
+    
+12、SVN 帮助 
+ 
+  svn help 
+  svn help ci
+
+总结一下svn命令行
+
+主要功能－－－－－－5个   
+1.将服务器上的文件拷贝到服务器上－－－－－前提是你要到一个本地的目录下eg:/Users/mobilityimac1/Desktop/Edw/test
+	svn checkout path(path是服务器的地址。)
+	例如：svn checkout svn://192.168.1.1/pro/domain
+	简写：svn co
+2.上传新的文件到服务器上－－－－－前提是你在你本机的要上传的文件的目录下，需要进行两步
+	svn add file 和 svn commit -m “LogMessage” path
+	例如：
+	svn add test.php
+	svn commit -m "add test file for my test" test.php 
+3.删除服务器上的文件
+	svn delete path -m "delete test fle" 
+	例如：svn delete svn://192.168.1.1/pro/domain/test.php -m "delete test file" 
+4.修改服务器上的文件
+	svn commit -m "add test file for my test" test.php 
+5.更新服务器上的文件
+ 	svn update -r m path 
+	例如：
+	svn update如果后面没有目录，默认将当前目录以及子目录下的所有文件都更新到最新版本。
+	svn update test.php(更新，于版本库同步。如果在提交的时候提示过期的话，是因为冲突，需要先update，修改文件，然后清除svn resolved，最后再提交commit)
+
+
+
+
+
+				Android Digital Signature
+http://blog.csdn.net/xxx9001/article/details/52056530－－－－－－Cordova 打包 Android release app 过程详解
+
+keystone password:Itwo123456
+api path:/Users/mobilityimac1/Desktop/Edw/controlTower_android/platforms/android/build/outputs/apk
+sdk path: /Users/mobilityimac1/Library/Android/sdk
+
+keytool -genkey -alias control_tower -keyalg RSA -validity 40000 -keystore mobility.keystore    ( -validity:有效期
+ -keyalg:指定密钥的算法 (如 RSA DSA，默认值为：DSA))
+
+keytool -list -v -keystore mobility.keystore
+
+签名 cd 
+jarsigner -verbose -keystore mobility.keystore -signedjar android-release-signed.apk -digestalg SHA1 -sigalg SHA256withRSA android-release-unsigned.apk control_tower
+(digestalg:摘要算法的名称 sigalg:签名算法的名称 control_tower:别名 )
+验证是否成功 －－－－比较 （需要把android-release-signed.apk改名为zip,然后在解压，会生成一个android-release-signed文件）
+keytool -list -v -keystore mobility.keystore   
+keytool -printcert -file /Users/mobilityimac1/Desktop/Edw/controlTower_android/platforms/android/build/outputs/apk/android-release-signed/META-INF/CONTROL_.RSA
+(CONTROL_.RSA 解压后在META-INF中生成的名字)
+
+优化对齐 －－－－将签名过后的apk文件(还原原来的zip文件)拷贝到－－－Android\sdk\build-tools\25.0.2
+./zipalign -v 4 android-release-signed.apk controlTower_android.apk
+./zipalign -c -v 4 controlTower_android.apk
+
+
+
